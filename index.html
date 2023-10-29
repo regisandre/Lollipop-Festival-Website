@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="LOLLIPOP FESTIVAL Festival - Experience the best music and vibes">
+    <title>LOLLIPOP FESTIVAL</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="canonical" href="https://www.yourwebsite.com/">
+    <style>
+        /* Styles */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #2c2c2c;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+            /* This styles the scrollbar for Firefox */
+            scrollbar-color: #333 #F5F5F5;
+            /* This styles the scrollbar for IE */
+            scrollbar-face-color: #333;
+            scrollbar-track-color: #F5F5F5;
+        }
+
+        .container {
+            max-width: 62.5vw;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header,
+        footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+
+        footer {
+            background-color: #1a1a1a;
+        }
+
+        header img,
+        footer img {
+            height: 50px;
+        }
+
+        .header-video-wrapper {
+            position: relative;
+            overflow: hidden;
+            height: 400px;
+            /* Adjust this value according to your desired height */
+        }
+
+        .header-video-wrapper video {
+            width: 100%;
+            height: auto;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: -1;
+        }
+
+        .video-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.3);
+            /* This gives a slight dark overlay. Adjust opacity as needed */
+            z-index: 1;
+        }
+
+        .play-button {
+            font-size: 3em;
+            width: 60px;
+            height: 60px;
+            text-align: center;
+            color: white;
+            border: none;
+            background-color: rgba(0, 0, 0, 0.6);
+            border-radius: 50%;
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 2;
+        }
+
+        /* Slideshow Styles */
+        .slideshow {
+            position: relative;
+            max-width: 100%;
+            overflow: hidden;
+        }
+
+        .slide {
+            display: none;
+            height: 30vh;
+        }
+
+        /* Table Styles */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        table,
+        th,
+        td {
+            border: 0px solid #fff;
+        }
+
+        th,
+        td {
+            padding: 8px 12px;
+            text-align: center;
+        }
+
+        #tickets table,
+        #footer table {
+            background-color: #1a1a1a;
+            opacity: 0.8;
+        }
+
+        /* Ticket Styles */
+        .ticket-btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #e4002b;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        #about {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .about-grid {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            /* Align the columns to start at the same vertical position */
+        }
+
+        .image-column,
+        .content-column {
+            flex-basis: 48%;
+            /* Splitting the width roughly in half /
+box-sizing: border-box; / Ensure padding and border are included in the element's total width and height */
+        }
+
+        .image-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+        }
+
+        .image-row img {
+            width: 48%;
+            /* Splitting the width roughly in half within each row */
+            height: auto;
+        }
+
+        .content-column h4 {
+            margin-bottom: 10px;
+            font-weight: normal;
+            color: #888;
+        }
+
+        .content-column h2 {
+            margin-bottom: 20px;
+        }
+
+        .content-column p {
+            margin-bottom: 20px;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            background-color: #000;
+            color: #fff;
+        }
+
+        #journal {
+            padding: 40px 0;
+            background-color: #2c2c2c;
+        }
+
+        .article-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: space-between;
+        }
+
+        article {
+            flex-basis: calc(33.33% - 20px);
+            position: relative;
+        }
+
+        article img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .date-overlay {
+            position: absolute;
+            top: 0;
+            width: 100%;
+            background-color: black;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+        }
+
+        article h3 {
+            font-size: 24px;
+            margin: 10px 0;
+        }
+
+        .news-button {
+            display: block;
+            width: 0 auto;
+            padding: 10px 20px;
+            background-color: #e4002b;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            margin-top: 10px;
+            text-align: center;
+            text-decoration: none;
+        }
+
+        #team table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 30px;
+            /* Adjust spacing between cells as required */
+        }
+
+        #team th,
+        #team td {
+            text-align: left;
+            vertical-align: top;
+            width: 33.33%;
+            /* Divide the table into three columns */
+        }
+
+        .team-avatar {
+            width: 80px;
+            /* Adjust width as needed */
+            height: auto;
+            margin-right: 15px;
+            /* Space between the image and the text */
+        }
+
+        .member-info {
+            display: flex;
+            align-items: center;
+            /* Vertically centers the items in case they have different heights */
+        }
+
+        #team ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        #team li:first-child {
+            font-weight: bold;
+            /* Makes the job title bold */
+            margin-bottom: 5px;
+            /* Space between job title and name */
+        }
+
+
+        /* This styles the scrollbar track */
+        ::-webkit-scrollbar {
+            width: 10px;
+            /* Adjust width of the vertical scrollbar */
+            height: 10px;
+            /* Adjust height of the horizontal scrollbar */
+        }
+
+        ::-webkit-scrollbar-track-piece {
+            display: none;
+            /* Background of the scrollbar track piece */
+        }
+
+        /* This styles the draggable scrolling handle */
+        ::-webkit-scrollbar-thumb {
+            background-color: #333;
+            /* Dark-grey scrollbar thumb */
+            border-radius: 10px;
+            /* Makes the scrollbar thumb rounded */
+            border: 1px solid #222;
+            /* Border of the scrollbar thumb */
+            -webkit-box-shadow: none;
+        }
+
+        ::-webkit-scrollbar-thumb:window-inactive {
+            background: none;
+            border: 0px solid #222;
+            -webkit-box-shadow: none;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.2);
+            -webkit-box-shadow: none;
+        }
+
+        ::-webkit-scrollbar-track:window-inactive {
+            background: rgba(0, 0, 0, 0.0);
+            -webkit-box-shadow: none;
+        }
+
+        /* Styles the buttons on the scrollbar (arrows pointing upwards and downwards) */
+        ::-webkit-scrollbar-button {
+            display: none;
+            /* Hides the default buttons */
+        }
+
+        /* Styles the portion of the track NOT occupied by the thumb */
+        ::-webkit-scrollbar-track-piece {
+            background-color: #F5F5F5;
+            /* Same as the track color */
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header>
+            <nav aria-label="Main navigation" class="header">
+                <a href="#home">
+                    <img src="logo1.png" alt="Lollipop Festival Logo">
+                </a>
+                <!-- Navigation and other header elements -->
+            </nav>
+        </header>
+
+        <!-- Home -->
+        <section id="home">
+            <div class="header-video-wrapper">
+                <video id="headerVideo" loop muted>
+                    <source src="path_to_your_video.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <div class="video-overlay"></div>
+                <button id="videoPlayBtn" class="play-button">&#9658;</button>
+            </div>
+        </section>
+
+        <!-- Line-up / Slideshow -->
+        <section id="lineup">
+            <div class="slideshow">
+                <div class="slide">
+                    <img src="artist1.png" alt="Image 1">
+                    <p>Image Caption 1</p>
+                </div>
+                <div class="slide">
+                    <img src="artist2.png" alt="Image 2">
+                    <p>Image Caption 2</p>
+                </div>
+                <!-- ... Additional slides as needed ... -->
+            </div>
+        </section>
+
+        <!-- Showcase Section -->
+        <section id="showcase">
+            <table>
+                <thead>
+                    <tr>
+                        <th>50+</th>
+                        <th>35+</th>
+                        <th>50+</th>
+                        <th>20K</th>
+                        <th>20+</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>MUSIC HOURS</td>
+                        <td>ARTISTS</td>
+                        <td>ACRES OF FUN</td>
+                        <td>CAPACITY</td>
+                        <td>FOOD TENTS</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Tickets Section -->
+        <section id="tickets">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Day Pass</th>
+                        <th>Comfort Day Pass</th>
+                        <th>Full Pass</th>
+                        <th>Comfort Full Pass</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>50 EUR</td>
+                        <td>70 EUR</td>
+                        <td>100 EUR</td>
+                        <td>150 EUR</td>
+                    </tr>
+                    <tr>
+                        <td>Festival entrance</td>
+                        <td>Festival entrance</td>
+                        <td>Festival entrance</td>
+                        <td>Festival entrance</td>
+                    </tr>
+                    <tr>
+                        <td>Advantage 2 (if any)</td>
+                        <td>Backstage access</td>
+                        <td>Backstage access</td>
+                        <td>Backstage access</td>
+                    </tr>
+                    <tr>
+                        <td>Advantage 3 (if any)</td>
+                        <td>Advantage 3 (if any)</td>
+                        <td>Free food</td>
+                        <td>Free food</td>
+                    </tr>
+                    <tr>
+                        <td>Advantage 4 (if any)</td>
+                        <td>Advantage 4 (if any)</td>
+                        <td>Advantage 4 (if any)</td>
+                        <td>VIP lounge access</td>
+                    </tr>
+                    <tr>
+                        <td><button class="ticket-btn">Add to cart</button></td>
+                        <td><button class="ticket-btn">Add to cart</button></td>
+                        <td><button class="ticket-btn">Add to cart</button></td>
+                        <td><button class="ticket-btn">Add to cart</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- About Section -->
+        <section id="about">
+            <div class="about-grid">
+                <!-- Image Grid Column -->
+                <div class="image-column">
+                    <div class="image-row">
+                        <img src="about1.png" alt="CAPTAIN">
+                        <img src="about2.png" alt="Cupcakes">
+                    </div>
+                    <div class="image-row">
+                        <img src="about2.png" alt="Antarctica">
+                        <img src="about1.png" alt="ARTZO">
+                    </div>
+                    <div class="image-row">
+                        <img src="about1.png" alt="CHOC">
+                        <img src="about2.png" alt="Southern">
+                    </div>
+                </div>
+
+                <!-- Content Column -->
+                <div class="content-column">
+                    <h4>About Lollipop Festival</h4>
+                    <h2>Nunc Mi Posuere Tristique Risus</h2>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros
+                        elementum tristique. Duis cursus, mi quis viverra ornare, eros dolor interdum nulla, ut commodo
+                        diam libero vitae erat.</p>
+                    <div class="button-group">
+                        <button class="btn">Buy Tickets</button>
+                        <button class="btn">Read More</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Journal Section -->
+        <section id="journal">
+            <h2>Journal</h2>
+            <div class="article-grid">
+
+                <!-- Article 1 -->
+                <article>
+                    <img src="article.png" alt="Article 1 Image">
+                    <div class="date-overlay">Date: 5th May 2023</div>
+                    <h3>New Artist Announcement</h3>
+                </article>
+
+                <!-- Article 2 -->
+                <article>
+                    <img src="article.png" alt="Article 1 Image">
+                    <div class="date-overlay">Date: 5th May 2023</div>
+                    <h3>New Artist Announcement</h3>
+                </article>
+
+                <!-- Article 3 -->
+                <article>
+                    <img src="article.png" alt="Article 1 Image">
+                    <div class="date-overlay">Date: 5th May 2023</div>
+                    <h3>New Artist Announcement</h3>
+                </article>
+
+                <!-- Article 4 -->
+                <article>
+                    <img src="article.png" alt="Article 1 Image">
+                    <div class="date-overlay">Date: 5th May 2023</div>
+                    <h3>New Artist Announcement</h3>
+                </article>
+
+                <!-- Article 5 -->
+                <article>
+                    <img src="article.png" alt="Article 1 Image">
+                    <div class="date-overlay">Date: 5th May 2023</div>
+                    <h3>New Artist Announcement</h3>
+                </article>
+
+                <!-- Article 6 -->
+                <article>
+                    <img src="article.png" alt="Article 1 Image">
+                    <div class="date-overlay">Date: 5th May 2023</div>
+                    <h3>New Artist Announcement</h3>
+                </article>
+
+            </div>
+
+            <!-- Button to see all news -->
+            <div class="see-all-news">
+                <a href="link-to-all-news.html" class="news-button">SEE ALL NEWS</a>
+            </div>
+
+        </section>
+
+        <!-- Organizer Team Section -->
+        <section id="team">
+            <table>
+                <thead>
+                    <!-- Avatar Row -->
+                    <tr>
+                        <th>
+                            <div class="member-info">
+                                <img src="avatar1.png" alt="Team Member 1" class="team-avatar">
+                                <ul>
+                                    <li>CEO</li>
+                                    <li>John Doe</li>
+                                </ul>
+                            </div>
+                        </th>
+                        <th>
+                            <div class="member-info">
+                                <img src="avatar2.png" alt="Team Member 2" class="team-avatar">
+                                <ul>
+                                    <li>CTO</li>
+                                    <li>Jane Smith</li>
+                                </ul>
+                            </div>
+                        </th>
+                        <th>
+                            <div class="member-info">
+                                <img src="avatar1.png" alt="Team Member 3" class="team-avatar">
+                                <ul>
+                                    <li>COO</li>
+                                    <li>Robert Brown</li>
+                                </ul>
+                            </div>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Descriptions Row -->
+                    <tr>
+                        <td>John is a passionate event organizer with over a decade of experience in curating music
+                            festivals.</td>
+                        <td>Jane is known for her meticulous attention to detail and has been pivotal in the success
+                            of
+                            numerous events.</td>
+                        <td>Robert brings creativity and innovation to the table, constantly pushing the boundaries
+                            of
+                            what's possible in event management.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Footer Section -->
+        <footer>
+            <table>
+                <thead>
+                    <tr>
+                        <th>COMPANY</th>
+                        <th>LEGAL</th>
+                        <th>CONTACT</th>
+                        <th>OTHER</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <!-- Company Links -->
+                        <td>
+                            <a href="#home">HOME</a><br>
+                            <a href="#lineup">LINEUP</a><br>
+                            <a href="#about">ABOUT</a><br>
+                            <a href="#tickets">TICKETS</a><br>
+                            <a href="#news">NEWS</a><br>
+                            <a href="#contact">CONTACT</a>
+                        </td>
+
+                        <!-- Legal Links -->
+                        <td>
+                            <a href="#privacy">PRIVACY</a><br>
+                            <a href="#terms">TERMS</a><br>
+                            <a href="#cookies">COOKIES</a><br>
+                            <a href="#refunds">REFUNDS</a>
+                        </td>
+
+                        <!-- Contact Links -->
+                        <td>
+                            <a href="https://www.facebook.com/">FACEBOOK</a><br>
+                            <a href="https://example.com/x">X</a><br>
+                            <a href="https://www.instagram.com/">INSTAGRAM</a><br>
+                            <a href="https://www.youtube.com/">YOUTUBE</a>
+                        </td>
+
+                        <!-- Other Links -->
+                        <td>
+                            <a href="#rules">RULES</a><br>
+                            <a href="#camping">CAMPING</a><br>
+                            <a href="#transport">TRANSPORT</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </footer>
+    </div>
+    <script>
+        // Slideshow JavaScript
+        let slideIndex = 0;
+        showSlides();
+
+        function showSlides() {
+            let slides = document.querySelectorAll(".slide");
+            for (let i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+            slideIndex++;
+            if (slideIndex > slides.length) { slideIndex = 1 }
+            slides[slideIndex - 1].style.display = "block";
+            setTimeout(showSlides, 2000); // Change slide every 2 seconds
+        }
+
+        document.getElementById('videoPlayBtn').addEventListener('click', function () {
+            const video = document.getElementById('headerVideo');
+
+            if (video.paused) {
+                video.play();
+                this.innerHTML = '&#9616;&#9616;';
+            } else {
+                video.pause();
+                this.innerHTML = '&#9658;';
+            }
+        });
+
+    </script>
+</body>
+
+</html>
