@@ -9,10 +9,26 @@
     <link rel="icon" type="image/x-icon" href="favicon.ico">
     <link rel="canonical" href="https://www.yourwebsite.com/">
     <style>
+        @font-face {
+            font-family: "PassionOne";
+            font-style: normal;
+            font-weight: normal;
+            src: url("PassionOne-Regular.otf") format("opentype");
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            font-family: "PassionOne", sans-serif;
+        }
+
         /* Styles */
         body {
-            font-family: Arial, sans-serif;
-            background-color: #2c2c2c;
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: #1E0027;
             color: #fff;
             margin: 0;
             padding: 0;
@@ -110,6 +126,12 @@
             margin-bottom: 20px;
         }
 
+        table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+        }
+
         table,
         th,
         td {
@@ -122,22 +144,83 @@
             text-align: center;
         }
 
-        #tickets table,
-        #footer table {
-            background-color: #1a1a1a;
-            opacity: 0.8;
+        /* Title Styles */
+        .title-container {
+            font-family: "PassionOne", sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            margin: 50px auto;
         }
 
-        /* Ticket Styles */
-        .ticket-btn {
-            display: inline-block;
-            padding: 10px 20px;
-            background-color: #e4002b;
-            color: #fff;
-            border: none;
-            cursor: pointer;
-            margin-top: 10px;
+        .title-line {
+            height: 3px;
+            width: 100px;
+            background-color: white;
         }
+
+        .title {
+            font-size: 36px;
+            border-left: 3px solid white;
+            border-right: 3px solid white;
+            padding: 0 50px;
+        }
+
+        /* End Title Styles */
+        /* Ticket Styles */
+
+        .tickets-container {
+            display: flex;
+            justify-content: space-between;
+            gap: 2px;
+        }
+
+        .ticket {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            width: 20%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .price {
+            font-size: 1rem;
+            color: #aaa;
+        }
+
+        h2 {
+            font-size: 2rem;
+            text-align: center;
+        }
+
+        .description {
+            font-size: 0.9rem;
+            color: #777;
+            border-bottom: 1px solid #555;
+            padding-bottom: 0.5rem;
+            width: 100%;
+            text-align: center;
+        }
+
+        .add-to-cart {
+            margin-top: 1rem;
+            border: 2px solid #aaa;
+            padding: 0.5rem 1rem;
+            color: #f1f1f1;
+            background-color: transparent;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .add-to-cart:hover {
+            background-color: #555;
+        }
+
+        /* End Tickets Styles */
+        /* About Styles */
 
         #about {
             display: flex;
@@ -197,6 +280,9 @@ box-sizing: border-box; / Ensure padding and border are included in the element'
             color: #fff;
         }
 
+        /* End About Styles */
+        /* Journal Styles */
+
         #journal {
             padding: 40px 0;
             background-color: #2c2c2c;
@@ -248,6 +334,9 @@ box-sizing: border-box; / Ensure padding and border are included in the element'
             text-decoration: none;
         }
 
+        /* End Journal Styles */
+        /* Team Styles */
+
         #team table {
             width: 100%;
             border-collapse: separate;
@@ -290,6 +379,7 @@ box-sizing: border-box; / Ensure padding and border are included in the element'
             /* Space between job title and name */
         }
 
+        /* End Team Styles */
 
         /* This styles the scrollbar track */
         ::-webkit-scrollbar {
@@ -360,8 +450,8 @@ box-sizing: border-box; / Ensure padding and border are included in the element'
         <!-- Home -->
         <section id="home">
             <div class="header-video-wrapper">
-                <video id="headerVideo" loop muted>
-                    <source src="path_to_your_video.mp4" type="video/mp4">
+                <video id="headerVideo" loop muted autoplay>
+                    <source src="trailer.mp4" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
                 <div class="video-overlay"></div>
@@ -410,56 +500,56 @@ box-sizing: border-box; / Ensure padding and border are included in the element'
 
         <!-- Tickets Section -->
         <section id="tickets">
-            <table>
-                <thead>
-                    <tr>
-                        <th>Day Pass</th>
-                        <th>Comfort Day Pass</th>
-                        <th>Full Pass</th>
-                        <th>Comfort Full Pass</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>50 EUR</td>
-                        <td>70 EUR</td>
-                        <td>100 EUR</td>
-                        <td>150 EUR</td>
-                    </tr>
-                    <tr>
-                        <td>Festival entrance</td>
-                        <td>Festival entrance</td>
-                        <td>Festival entrance</td>
-                        <td>Festival entrance</td>
-                    </tr>
-                    <tr>
-                        <td>Advantage 2 (if any)</td>
-                        <td>Backstage access</td>
-                        <td>Backstage access</td>
-                        <td>Backstage access</td>
-                    </tr>
-                    <tr>
-                        <td>Advantage 3 (if any)</td>
-                        <td>Advantage 3 (if any)</td>
-                        <td>Free food</td>
-                        <td>Free food</td>
-                    </tr>
-                    <tr>
-                        <td>Advantage 4 (if any)</td>
-                        <td>Advantage 4 (if any)</td>
-                        <td>Advantage 4 (if any)</td>
-                        <td>VIP lounge access</td>
-                    </tr>
-                    <tr>
-                        <td><button class="ticket-btn">Add to cart</button></td>
-                        <td><button class="ticket-btn">Add to cart</button></td>
-                        <td><button class="ticket-btn">Add to cart</button></td>
-                        <td><button class="ticket-btn">Add to cart</button></td>
-                    </tr>
-                </tbody>
-            </table>
+            <div class="title-container">
+                <div class="title-line"></div>
+                <span class="title">TICKETS</span>
+                <div class="title-line"></div>
+            </div>
+            <div class="tickets-container">
+                <div class="ticket">
+                    <p class="price">€50.00 EUR</p>
+                    <h2>Day Pass</h2>
+                    <p class="description">Festival entrance</p>
+                    <p class="description">Advantage 2</p>
+                    <p class="description">Advantage 3</p>
+                    <p class="description">Advantage 4</p>
+                    <button class="add-to-cart">ADD TO CART</button>
+                </div>
+                <div class="ticket">
+                    <p class="price">€70.00 EUR</p>
+                    <h2>Comfort Day</h2>
+                    <p class="description">Festival entrance</p>
+                    <p class="description">Free food</p>
+                    <p class="description">Advantage 3</p>
+                    <p class="description">Advantage 4</p>
+                    <button class="add-to-cart">ADD TO CART</button>
+                </div>
+                <div class="ticket">
+                    <p class="price">€100.00 EUR</p>
+                    <h2>Full Pass</h2>
+                    <p class="description">Festival entrance</p>
+                    <p class="description">Advantage 2</p>
+                    <p class="description">Backstage access</p>
+                    <p class="description">Advantage 4</p>
+                    <button class="add-to-cart">ADD TO CART</button>
+                </div>
+                <div class="ticket">
+                    <p class="price">€150.00 EUR</p>
+                    <h2>Comfort Full</h2>
+                    <p class="description">Festival entrance</p>
+                    <p class="description">Free food</p>
+                    <p class="description">Backstage access</p>
+                    <p class="description">VIP lounge access</p>
+                    <button class="add-to-cart">ADD TO CART</button>
+                </div>
+            </div>
         </section>
 
+        <div class="title-container">
+            <div class="title-line"></div>
+            <span class="title">ABOUT</span>
+            <div class="title-line"></div>
+        </div>
         <!-- About Section -->
         <section id="about">
             <div class="about-grid">
@@ -494,11 +584,14 @@ box-sizing: border-box; / Ensure padding and border are included in the element'
             </div>
         </section>
 
+        <div class="title-container">
+            <div class="title-line"></div>
+            <span class="title">JOURNAL</span>
+            <div class="title-line"></div>
+        </div>
         <!-- Journal Section -->
         <section id="journal">
-            <h2>Journal</h2>
             <div class="article-grid">
-
                 <!-- Article 1 -->
                 <article>
                     <img src="article.png" alt="Article 1 Image">
@@ -552,6 +645,11 @@ box-sizing: border-box; / Ensure padding and border are included in the element'
 
         <!-- Organizer Team Section -->
         <section id="team">
+            <div class="title-container">
+                <div class="title-line"></div>
+                <span class="title">TEAM</span>
+                <div class="title-line"></div>
+            </div>
             <table>
                 <thead>
                     <!-- Avatar Row -->

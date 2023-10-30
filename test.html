@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Titre avec encadrement</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .title-container {
+            display: flex;
+            align-items: center;
+        }
+
+        .title-line {
+            height: 2px;
+            width: 50px;
+            background-color: white;
+        }
+
+        .title {
+            font-size: 24px;
+            border-left: 2px solid white;
+            border-right: 2px solid white;
+            padding: 0 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="title-container">
+        <div class="title-line"></div>
+        <span class="title">TICKETS</span>
+        <div class="title-line"></div>
+    </div>
+</body>
+
+</html>
